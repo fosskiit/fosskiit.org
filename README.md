@@ -11,16 +11,16 @@ development of FOSS in KIIT University.
 
 Contents
 --------
-* [Minimal Development Setup](#minimal-development-setup)
-* [Complete Development Setup](#complete-development-setup)
+* [Minimal Setup](#minimal-setup)
+* [Complete Setup](#complete-setup)
 * [Live Setup](#live-setup)
 * [Resources](#resources)
 * [License](#license)
 * [Support](#support)
 
 
-Minimal Development Setup
-------------------------
+Minimal Setup
+-------------
 [FOSSKIIT.org][WEBSITE] is a static website that is generated with
 [Hugo][HUGO]. All content files are written in plain HTML. It is quite
 simple to get a minimal setup of the website up and running on a local
@@ -42,11 +42,10 @@ Here are the steps to quickly set up a local copy of the website:
     of the website.
 
 [HUGO]: https://gohugo.io/
-[BREW]: https://brew.sh/
 
 
-Complete Development Setup
---------------------------
+Complete Setup
+--------------
 The steps in the previous section are sufficient to get a minimal setup
 of the website, and start editing its code to improve the website and
 test it. This is sufficient for contributors who want to edit or add
@@ -55,11 +54,6 @@ more content to the website.
 Contributors who want to maintain the live server that runs the
 website need to perform a few more steps to setup a Debian virtual
 machine that closely resembles the live server environment.
-
-If you are new to Debian, there is a basic outline of how to install
-Debian on VirtualBox in this document: [debian-setup.md][DEBVM].
-
-[DEBVM]: https://github.com/susam/setup/blob/master/debian-setup.md
 
 Here are the steps to set up the development environment in a Debian
 system:
@@ -71,34 +65,21 @@ system:
 
  2. Install Hugo.
 
-        mkdir ~/tmp
-        cd ~/tmp
+        cd /tmp
         wget https://github.com/gohugoio/hugo/releases/download/v0.32/hugo_0.32_Linux-64bit.tar.gz
         tar -xvzf hugo_0.32_Linux-64bit.tar.gz
         sudo mv hugo /usr/local/bin/
 
  3. Clone this repository.
 
-        mkdir -p ~/git
-        cd ~/git
         git clone https://github.com/fosskiit/fosskiit.org.git
+        cd fosskiit.org
 
- 4. Configure Nginx for development.
+ 4. Deploy the HTTP-only website.
 
-        sudo ln -sf ~/git/fosskiit.org/etc/nginx/dev.fosskiit.org /etc/nginx/sites-enabled/
-        sudo ln -sf ~/git/fosskiit.org/public /var/www/fosskiit.org
-        sudo systemctl reload nginx
+        sudo make http
 
- 5. Generate the website.
-
-        cd ~/git/fosskiit.org
-        make
-
- 6. Associate the hostname `fosskiit` with the loopback interface.
-
-        echo 127.0.0.1 fosskiit | sudo tee -a /etc/hosts
-
- 7. Visit http://fosskiit/ with a web browser to see a local copy of the
+ 5. Visit http://fosskiit/ with a web browser to see a local copy of the
     website.
 
 
@@ -112,42 +93,25 @@ apex domain and www subdomain to this server.
 Perform the following steps to setup the live environment on an
 Internet-facing server.
 
- 1. Log in as root and create user account for the fosskiit service.
+ 1. Repeat the installation steps (steps 1 and 2) from previous section.
 
-        adduser fosskiit --gecos ""
-        adduser fosskiit sudo
-
- 2. Log in as the new user and perform steps 1 to 5 from the previous
-    section.
-
- 3. Visit the following URLs and ensure that the website is accessible.
-
-      - http://fosskiit.org/
-      - http://www.fosskiit.org/
-
- 4. Install certbot.
+ 2. Install Let's Encrypt Certbot.
 
         sudo apt-get update
-        sudo apt-get install certbot
+        sudo apt-get -y install certbot
 
- 5. Get TLS certificates.
+ 3. Deploy the HTTPS-enabled website.
 
-        sudo certbot certonly --agree-tos -m fosskiit@outlook.com --webroot -w /var/www/fosskiit.org -d fosskiit.org,www.fosskiit.org
+        sudo make https
 
- 6. Configure Nginx for the live website.
-
-        sudo rm /etc/nginx/sites-enabled/dev.fosskiit.org
-        sudo ln -sf ~/git/fosskiit.org/etc/nginx/fosskiit.org /etc/nginx/sites-enabled/
-        sudo systemctl reload nginx
-
- 7. Visit the following URLs and ensure that the website is accessible.
+ 4. Visit the following URLs and ensure that the website is accessible.
 
       - https://fosskiit.org/
       - https://www.fosskiit.org/
       - http://fosskiit.org/
       - http://www.fosskiit.org/
 
- 8. Verify that last three URLs mentioned in the previous step redirect
+ 5. Verify that last three URLs mentioned in the previous step redirect
     the client to the first URL. This may be confirmed with the following
     commands.
 
@@ -155,25 +119,19 @@ Internet-facing server.
         curl -I http://fosskiit.org/
         curl -I http://www.fosskiit.org/
 
- 9. Edit crontab to attempt renewal of the certificate everyday to
-    ensure that the certificate is renewed before it expires.
-
-        sudo crontab -e
-
-    In the editor, add the following entry, then save and quit the
-    editor.
-
-        0 0 * * * (/usr/bin/certbot renew -n --renew-hook "systemctl * reload * nginx"; date) >> /var/log/certbot.log
-
 
 Resources
 ---------
 Here is a list of useful links about this project.
 
-- [Website](https://fosskiit.org/)
-- [Source code](https://github.com/fosskiit/fosskiit.org)
-- [Issue tracker](https://github.com/fosskiit/fosskiit.org/issues)
-- [IRC Channel](https://webchat.freenode.net/?channels=fosskiit)
+- [Website][WEBSITE]
+- [Source code][SOURCE]
+- [Issue tracker][ISSUES]
+- [IRC Channel][IRC]
+
+[SOURCE]: https://github.com/fosskiit/fosskiit.org
+[ISSUES]: https://github.com/fosskiit/fosskiit.org/issues
+[IRC]: https://webchat.freenode.net/?channels=fosskiit
 
 
 License
@@ -196,5 +154,5 @@ of Kalinga Institute of Industrial Technology (KIIT).
 
 Support
 -------
-To report bugs, suggest improvements, or ask questions, please visit
-<https://github.com/fosskiit/fosskiit.org/issues>.
+To report bugs, suggest improvements, or ask questions,
+[create issues][ISSUES].

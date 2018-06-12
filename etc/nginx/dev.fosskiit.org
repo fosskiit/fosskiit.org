@@ -1,8 +1,0 @@
-# Nginx configuration for development environment.
-
-server {
-    listen 80;
-    listen [::]:80;
-    server_name fosskiit.org www.fosskiit.org fosskiit;
-    root /var/www/fosskiit.org;
-}

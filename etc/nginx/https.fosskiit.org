@@ -1,11 +1,9 @@
-# Nginx configuration for live environment.
-
-# https://fosskiit.org/
+# https://example.com/
 server {
     listen 443 ssl;
     listen [::]:443 ssl;
 
-    server_name fosskiit.org;
+    server_name fosskiit.org fosskiit;
 
     ssl_certificate /etc/letsencrypt/live/fosskiit.org/fullchain.pem;
     ssl_certificate_key /etc/letsencrypt/live/fosskiit.org/privkey.pem;
@@ -13,7 +11,7 @@ server {
     root /var/www/fosskiit.org;
 }
 
-# https://www.fosskiit.org/ => https://fosskiit.org/
+# https://www.example.com/ => https://example.com/
 server {
     listen 443 ssl;
     listen [::]:443 ssl;
