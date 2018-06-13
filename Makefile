@@ -53,3 +53,14 @@ https: http
 	ln -snf "$$PWD/etc/nginx/https.$(FQDN)" /etc/nginx/sites-enabled/$(FQDN)
 	systemctl reload nginx
 	@echo Done; echo
+
+pull:
+	@echo
+	@echo Fetching new changes ...
+	git fetch
+	[ "$$(git rev-parse HEAD)" = "$$(git rev-parse "@{u}")" ] && \
+	echo && echo No new changes && echo && false || :
+	git merge
+	@echo Done; echo
+
+update: pull live
