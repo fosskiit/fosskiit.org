@@ -69,6 +69,7 @@ system:
         wget https://github.com/gohugoio/hugo/releases/download/v0.32/hugo_0.32_Linux-64bit.tar.gz
         tar -xvzf hugo_0.32_Linux-64bit.tar.gz
         sudo mv hugo /usr/local/bin/
+        sudo chown root:root /usr/local/bin/hugo
 
  3. Clone this repository.
 
