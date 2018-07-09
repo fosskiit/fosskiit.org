@@ -1,0 +1,161 @@
+/* Body */
+body {
+    margin: 0;
+    line-height: 1.5em;
+    color: #333333;
+    font-family: helvetica, arial, sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin-bottom: 0;
+    line-height: 1.2em;
+}
+
+a:link, a:visited {
+    color: #0000e0;
+    text-decoration: none
+}
+
+a:hover, a:active {
+    color: #0000ff;
+    text-decoration: underline
+}
+
+pre {
+    background: #f0f0f0;
+    padding: 0.5em;
+}
+
+/* Single column layout */
+nav div, main, footer > div {
+    max-width: 40em;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0 0.5em;
+}
+
+
+/* Navigation */
+nav {
+    background: #303030;
+    border-bottom: thin solid #101010;
+    text-transform: uppercase;
+}
+
+nav a {
+    display: inline-block;
+    margin-right: 1em;
+    /* Prevent anchor height from being larger than image height.
+       Otherwise, the entire anchor would be center-aligned which would
+       cause the logo to shift towards the top. */
+    line-height: 0;
+}
+
+nav a:last-child {
+    margin-right: 0;
+}
+
+nav a:link, nav a:visited {
+    color: #cccccc;
+}
+
+nav a:hover, nav a:active {
+    color: #ffffff;
+}
+
+nav div {
+    display: flex;
+    align-items: center;
+    height: 4em;
+}
+
+nav img {
+    height: 3.2em;
+}
+
+nav img:hover {
+    filter: brightness(120%);
+}
+
+
+/* Footer */
+footer {
+    background: #f0f0f0;
+    border-top: thin solid #e0e0e0;
+    margin-top: 2em;
+    padding-top: 2.25em;
+    padding-bottom: 2em;
+    box-shadow: 0 100vh 0 100vh #f0f0f0;
+}
+
+footer div div {
+    font-size: 0.8em;
+}
+
+footer .links a {
+    margin-right: 1em;
+}
+
+
+/* Add some vertical space between Facebook and Twitter plugins,
+ * otherwise they stick next to each other. */
+.fb-page {
+    margin-bottom: 0.5em;
+}
+
+
+/* Posts */
+article {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+article h2 a:link, article h2 a:visited,
+article h1 a:link, article h1 a:visited,
+.more:link, .more:visited {
+    color: #303030;
+}
+
+article h2 a:hover, article h2 a:active,
+article h1 a:hover, article h1 a:active,
+.more:hover, .more:active {
+    color: #707070;
+}
+
+.meta {
+    font-size: 0.8em;
+    color: #707070;
+    font-style: italic;
+}
+
+.summary {
+    margin-top: 0.25em;
+    margin-bottom: 0.25em;
+}
+
+div .more {
+    margin-top: 0;
+    font-weight: bold;
+}
+
+
+/* RSS */
+.rss {
+    padding: 0.3em 0.35em;
+    border-radius: 0.25em;
+    font-size: 0.75em;
+    font-weight: bold;
+}
+
+.rss:link, .rss:visited, .rss:hover, .rss:active {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.rss:link, .rss:visited {
+    background: #ff6600;
+}
+
+.rss:hover, .rss:active {
+    background: #ff8822;
+}
