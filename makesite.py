@@ -177,7 +177,8 @@ def main():
         'subtitle': 'FOSS@KIIT',
         'author': 'Admin',
         'site_url': 'https://fosskiit.org',
-        'current_year': datetime.datetime.now().year
+        'current_year': datetime.datetime.now().year,
+        'head': '',
     }
 
     # If params.json exists, load it.

@@ -128,11 +128,11 @@ Here is a list of useful links about this project.
 - [Website][WEBSITE]
 - [Source code][SOURCE]
 - [Issue tracker][ISSUES]
-- [IRC Channel][IRC]
+- [Chat Channel][CHANNEL]
 
 [SOURCE]: https://github.com/fosskiit/fosskiit.org
 [ISSUES]: https://github.com/fosskiit/fosskiit.org/issues
-[IRC]: https://webchat.freenode.net/?channels=fosskiit
+[CHANNEL]: https://fosskiit.org/channel/
 
 
 License

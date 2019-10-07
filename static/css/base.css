@@ -26,6 +26,11 @@ pre {
     padding: 0.5em;
 }
 
+pre, code, samp, kbd {
+  font-family: monospace,monospace;
+  font-size: 0.9em;
+}
+
 /* Single column layout */
 nav div, main, footer > div {
     max-width: 40em;
